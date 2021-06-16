@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/first_name_input"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:hint="@string/first_name"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/last_name_input"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:hint="@string/last_name"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_name_input" />
+
+    <TextView
+        android:id="@+id/job_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_name_input"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="29dp"
+        android:textSize="20sp"
+        android:text="@string/job" />
+
+    <RadioGroup
+        android:id="@+id/job_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/last_name_input"
+        app:layout_constraintLeft_toRightOf="@+id/job_hint"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/engineer_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="@string/engineer" />
+
+        <RadioButton
+            android:id="@+id/intern_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/intern" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/age_input"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:hint="@string/age_yrs"
+        android:inputType="number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/job_radio_group" />
+
+    <TextView
+        android:id="@+id/dollar_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/age_input"
+        app:layout_constraintRight_toLeftOf="@+id/salary_input"
+        android:textSize="24sp"
+        android:text="@string/dollar_sign" />
+
+    <EditText
+        android:id="@+id/salary_input"
+        android:layout_width="237dp"
+        android:layout_height="40dp"
+        android:hint="@string/salary_dollars"
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toRightOf="@+id/dollar_sign"
+        app:layout_constraintTop_toTopOf="@+id/dollar_sign" />
+
+    <TextView
+        android:id="@+id/senior_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/salary_input"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="29dp"
+        android:textSize="20sp"
+        android:text="@string/senior" />
+
+    <RadioGroup
+        android:id="@+id/senior_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/salary_input"
+        app:layout_constraintLeft_toRightOf="@+id/senior_hint"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/yes_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="@string/yes" />
+
+        <RadioButton
+            android:id="@+id/no_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit_employee_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senior_radio_group"
+        android:text="@string/submit" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

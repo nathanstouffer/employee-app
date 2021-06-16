@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/employeeListFragment">
+
+    <fragment
+        android:id="@+id/employeeListFragment"
+        android:name="com.example.employees.list.EmployeeListFragment"
+        android:label="@string/employees" >
+        <action
+            android:id="@+id/action_employeeListFragment_to_createEmployeeFragment"
+            app:destination="@id/createEmployeeFragment" />
+        <action
+            android:id="@+id/action_employeeListFragment_to_employeeDetailFragment"
+            app:destination="@id/employeeDetailFragment" />
+        <action
+            android:id="@+id/action_employeeListFragment_to_deleteEmployeeDialogFragment"
+            app:destination="@id/deleteEmployeeDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEmployeeFragment"
+        android:name="com.example.employees.edit.CreateEmployeeFragment"
+        android:label="@string/create_employee" >
+        <action
+            android:id="@+id/action_createEmployeeFragment_to_employeeListFragment"
+            app:destination="@id/employeeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeDetailFragment"
+        android:name="com.example.employees.EmployeeDetailFragment"
+        android:label="@string/employee_details" >
+        <action
+            android:id="@+id/action_employeeDetailFragment_to_employeeListFragment"
+            app:destination="@id/employeeListFragment" />
+        <argument
+            android:name="employee_id"
+            app:argType="integer" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteEmployeeDialogFragment"
+        android:name="com.example.employees.edit.DeleteEmployeeDialogFragment"
+        android:label="DeleteEmployeeDialogFragment" >
+        <argument
+            android:name="employee_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_deleteEmployeeDialogFragment_to_employeeListFragment"
+            app:destination="@id/employeeListFragment" />
+    </dialog>
+</navigation>

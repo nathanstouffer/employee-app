@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Employees</string>
+    <string name="submit">submit</string>
+    <string name="back">back</string>
+    <string name="employees">Employees</string>
+    <string name="create_employee">Create Employee</string>
+    <string name="employee_details">Employee Details</string>
+    <string name="plus_sign">plus_sign</string>
+    <string name="submit_employee">Submit employee</string>
+    <string name="cancel">Cancel</string>
+    <string name="waiting_for_network">Waiting for network</string>
+    <string name="name">Name:</string>
+    <string name="job">Job:</string>
+    <string name="age">Age:</string>
+    <string name="senior">Senior:</string>
+    <string name="salary">Salary:</string>
+    <string name="first_name">first name</string>
+    <string name="salary_dollars">salary</string>
+    <string name="age_yrs">age (years)</string>
+    <string name="last_name">last name</string>
+    <string name="engineer">Engineer</string>
+    <string name="intern">Intern</string>
+    <string name="dollar_sign">$</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="refresh">Refresh</string>
+    <string name="delete">Delete </string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+</resources>
