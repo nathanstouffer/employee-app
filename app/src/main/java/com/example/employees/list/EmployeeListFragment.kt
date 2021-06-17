@@ -1,8 +1,11 @@
 package com.example.employees.list
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -10,8 +13,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.employees.R
 import com.example.employees.databinding.EmployeeListFragmentBinding
+import com.example.employees.edit.ItemClickHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class EmployeeListFragment : Fragment() {
+class EmployeeListFragment : Fragment(), ItemClickHandler {
 
     private val TAG = "EmployeeListFragment"
 
@@ -26,7 +33,7 @@ class EmployeeListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     // adapter for the employees
-    private val adapter = EmployeeAdapter()
+    private val adapter = EmployeeAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "in onCreate()")
@@ -106,6 +113,44 @@ class EmployeeListFragment : Fragment() {
             }
         }
         return ret
+    }
+
+    override fun onItemClick(id: Int) {
+        val action = EmployeeListFragmentDirections
+            .actionEmployeeListFragmentToEmployeeDetailFragment(id)
+        binding.root.findNavController().navigate(action)
+    }
+
+    override fun onItemLongClick(emp_id: Int) {
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("Delete employee?")
+            .setPositiveButton(R.string.Yes,
+                DialogInterface.OnClickListener { dialog, id ->
+                    deleteEmployee(emp_id)
+                })
+            .setNegativeButton(R.string.No,
+                DialogInterface.OnClickListener { dialog, id ->
+                    // User cancelled the dialog
+                })
+        // Create the AlertDialog object and return it
+        builder.create()
+        builder.show()
+    }
+
+    private fun deleteEmployee(emp_id: Int) = GlobalScope.launch(Dispatchers.Main) {
+        val success = viewModel.deleteEmployee(emp_id)
+
+        if (success) {
+            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+            viewModel.refreshEmployeeList()
+        } else {
+            Toast.makeText(
+                context,
+                "Network error: could not delete employee $emp_id",
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        }
     }
 
 }

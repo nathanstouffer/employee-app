@@ -83,17 +83,15 @@ class CreateEmployeeFragment : Fragment() {
             val new_emp: Employee = createEmployee()
             val success = viewModel.submitEmployee(new_emp)
 
-            withContext(Dispatchers.Main) {
-                if (success) {
-                    Toast.makeText(context, "Submitted", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Network error: could not submit", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                val action =
-                    CreateEmployeeFragmentDirections.actionCreateEmployeeFragmentToEmployeeListFragment()
-                binding.root.findNavController().navigate(action)
+            if (success) {
+                Toast.makeText(context, "Submitted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Network error: could not submit", Toast.LENGTH_SHORT)
+                    .show()
             }
+            val action =
+                CreateEmployeeFragmentDirections.actionCreateEmployeeFragmentToEmployeeListFragment()
+            binding.root.findNavController().navigate(action)
         }
     }
 

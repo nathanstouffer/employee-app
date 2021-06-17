@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.employees.R
+import com.example.employees.edit.ItemClickHandler
 import com.example.employees.network.Employee
 
-class EmployeeAdapter() :
+class EmployeeAdapter(private var itemClickHandler: ItemClickHandler) :
     RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
 
     val employees = mutableListOf<Employee>()
@@ -21,19 +21,6 @@ class EmployeeAdapter() :
 
         init {
             employeeNameListing = view.findViewById(R.id.employee_name_listing)
-        }
-
-        fun navigateToEmployeeDetailFragment(id: Int) {
-            val action = EmployeeListFragmentDirections
-                .actionEmployeeListFragmentToEmployeeDetailFragment(id)
-            view.findNavController().navigate(action)
-        }
-
-        fun navigateToDeleteEmployeeFragment(id: Int): Boolean {
-            val action = EmployeeListFragmentDirections
-                .actionEmployeeListFragmentToDeleteEmployeeDialogFragment(id)
-            view.findNavController().navigate(action)
-            return true
         }
 
     }
@@ -57,12 +44,11 @@ class EmployeeAdapter() :
         val emp = employees[position]
         viewHolder.employeeNameListing.setText("${emp.last}, ${emp.first}")
         viewHolder.employeeNameListing.setOnClickListener {
-            viewHolder.navigateToEmployeeDetailFragment(
-                emp.id
-            )
+            itemClickHandler.onItemClick(emp.id)
         }
         viewHolder.employeeNameListing.setOnLongClickListener {
-            viewHolder.navigateToDeleteEmployeeFragment(emp.id)
+            itemClickHandler.onItemLongClick(emp.id)
+            return@setOnLongClickListener true
         }
     }
 

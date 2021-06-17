@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.employees.network.Employee
 import com.example.employees.network.EmployeeApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EmployeeListViewModel : ViewModel() {
 
@@ -34,6 +36,17 @@ class EmployeeListViewModel : ViewModel() {
                 Log.e(TAG, "${e.message}")
                 _employees.postValue(listOf())
             }
+        }
+    }
+
+    suspend fun deleteEmployee(id: Int): Boolean = withContext(Dispatchers.IO) {
+        Log.d(TAG, "in deleteEmployee()")
+        try {
+            EmployeeApi.retrofitService.deleteEmployee(id)
+            return@withContext true
+        } catch (e: Exception) {
+            Log.e(TAG, "${e.message}")
+            return@withContext false
         }
     }
 
